@@ -197,3 +197,80 @@ for (i = 0; i < someClassArray.length; i++) {
 for (i = 0; i < someClassArray.length; i++) {
     someClassArray[i].printInfo();
 }
+
+console.log("");
+
+let dialogue = "Hello World";
+console.log(dialogue);
+new Promise((resolve, reject) => {
+    console.log("Sadness"); // would run no matter what
+    if (dialogue == "Hello World") {
+        console.log("More sadness");
+        resolve();
+    } else {
+        console.log("Most sadness");
+        reject();
+    }
+}).then(() => {
+    console.log("It worked I suppose :("); // used when the promise is resolved
+}).catch(() => {
+    console.log("Even more sadness"); // used when the promise is rejected
+});
+
+console.log("Goodbye World");
+
+// The promise above outputs "Sadness" when dialogue is equal to "Hello World" and the promise is resolved and the code moves on
+
+console.log("");
+
+new Promise((resolve) => {
+    console.log("Wait for 10 seconds");
+    setTimeout(() => {
+        resolve();
+    }
+    , 10000);
+}).then(() => {
+    console.log("I suppose it worked :(");
+});
+
+console.log("");
+
+let randomNo = Math.floor(Math.random() * 100);
+
+new Promise((resolve, reject) => { // name a random promise NotAPromise
+    console.log("");
+    console.log("Random Number: " + randomNo);
+    if (randomNo % 2 == 0) {
+        resolve();
+    } else {
+        reject();
+    }
+}).then(() => {
+    console.log(randomNo + " is even :(");
+}).catch(() => {
+    console.log(randomNo + " is odd :(");
+});
+
+console.log("");
+
+let NotAPromise = new Promise((resolve, reject) => {
+    let newRandomNumber = Math.floor(Math.random() * 10000);
+    console.log("");
+    resolve(newRandomNumber);
+});
+
+NotAPromise.then((result) => {
+    console.log("This is not a promise");
+    console.log(result);
+    return result ** 2;
+}).then((result) => {
+    console.log("This is not a promise");
+    console.log(result);
+    return result ** 2;
+}).then((result) => {
+    console.log("This is not a promise");
+    console.log(result);
+});
+
+console.log("");
+
